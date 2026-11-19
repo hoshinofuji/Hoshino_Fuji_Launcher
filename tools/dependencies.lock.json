@@ -1,0 +1,137 @@
+{
+  "format": 1,
+  "dependencies": [
+    {
+      "name": "javafx-base-21.0.13.1-mac.jar",
+      "url": "https://repo.maven.apache.org/maven2/org/openjfx/javafx-base/21.0.13.1/javafx-base-21.0.13.1-mac.jar",
+      "target": "lib/mac/javafx-base.jar",
+      "maven": "org.openjfx:javafx-base",
+      "version": "21.0.13.1",
+      "sha256": "5d4a01edfb406c3406b4892bbdcc73a8ff5989184408060e5594a3c18845ffd1",
+      "size": 753232
+    },
+    {
+      "name": "javafx-graphics-21.0.13.1-mac.jar",
+      "url": "https://repo.maven.apache.org/maven2/org/openjfx/javafx-graphics/21.0.13.1/javafx-graphics-21.0.13.1-mac.jar",
+      "target": "lib/mac/javafx-graphics.jar",
+      "maven": "org.openjfx:javafx-graphics",
+      "version": "21.0.13.1",
+      "sha256": "55a94e7cbf24d475d69168c26787e1494daafe3ecd93286e81c2e2ebaf7da5be",
+      "size": 4859616
+    },
+    {
+      "name": "javafx-controls-21.0.13.1-mac.jar",
+      "url": "https://repo.maven.apache.org/maven2/org/openjfx/javafx-controls/21.0.13.1/javafx-controls-21.0.13.1-mac.jar",
+      "target": "lib/mac/javafx-controls.jar",
+      "maven": "org.openjfx:javafx-controls",
+      "version": "21.0.13.1",
+      "sha256": "73f2fd37639587f57e9b37678393780055a0a75d8543a96533072c17f11ae133",
+      "size": 2582597
+    },
+    {
+      "name": "javafx-base-21.0.13.1-mac-aarch64.jar",
+      "url": "https://repo.maven.apache.org/maven2/org/openjfx/javafx-base/21.0.13.1/javafx-base-21.0.13.1-mac-aarch64.jar",
+      "target": "lib/mac-aarch64/javafx-base.jar",
+      "maven": "org.openjfx:javafx-base",
+      "version": "21.0.13.1",
+      "sha256": "f28565aaa51f755e8cc6b443a49254447d265032f7e44452baca6b5f6cc7ad65",
+      "size": 753232
+    },
+    {
+      "name": "javafx-graphics-21.0.13.1-mac-aarch64.jar",
+      "url": "https://repo.maven.apache.org/maven2/org/openjfx/javafx-graphics/21.0.13.1/javafx-graphics-21.0.13.1-mac-aarch64.jar",
+      "target": "lib/mac-aarch64/javafx-graphics.jar",
+      "maven": "org.openjfx:javafx-graphics",
+      "version": "21.0.13.1",
+      "sha256": "f4d947d516b86ad6b4013c5c66433acde6f032b03cb7f777acfefe65001cf605",
+      "size": 4824442
+    },
+    {
+      "name": "javafx-controls-21.0.13.1-mac-aarch64.jar",
+      "url": "https://repo.maven.apache.org/maven2/org/openjfx/javafx-controls/21.0.13.1/javafx-controls-21.0.13.1-mac-aarch64.jar",
+      "target": "lib/mac-aarch64/javafx-controls.jar",
+      "maven": "org.openjfx:javafx-controls",
+      "version": "21.0.13.1",
+      "sha256": "24f4e53317111ffaa067827dc8804083127cac8c65d24d21fe88c5eaa2a2fd8a",
+      "size": 2582612
+    },
+    {
+      "name": "javafx-base-21.0.13.1-win.jar",
+      "url": "https://repo.maven.apache.org/maven2/org/openjfx/javafx-base/21.0.13.1/javafx-base-21.0.13.1-win.jar",
+      "target": "lib/win/javafx-base.jar",
+      "maven": "org.openjfx:javafx-base",
+      "version": "21.0.13.1",
+      "sha256": "bf9ab62f549b38a6dd7c174b470fbe0cacaaabc2f32dcad18778c2f81bb6a194",
+      "size": 753232
+    },
+    {
+      "name": "javafx-graphics-21.0.13.1-win.jar",
+      "url": "https://repo.maven.apache.org/maven2/org/openjfx/javafx-graphics/21.0.13.1/javafx-graphics-21.0.13.1-win.jar",
+      "target": "lib/win/javafx-graphics.jar",
+      "maven": "org.openjfx:javafx-graphics",
+      "version": "21.0.13.1",
+      "sha256": "3fd9276661219e04a9a010fc4f9d2c96dd806b20d07131cc7148359fc27a8820",
+      "size": 5911215
+    },
+    {
+      "name": "javafx-controls-21.0.13.1-win.jar",
+      "url": "https://repo.maven.apache.org/maven2/org/openjfx/javafx-controls/21.0.13.1/javafx-controls-21.0.13.1-win.jar",
+      "target": "lib/win/javafx-controls.jar",
+      "maven": "org.openjfx:javafx-controls",
+      "version": "21.0.13.1",
+      "sha256": "4abe72cae6e8fe033d435623a65c57fa9ee11c9c93fc96d7f24ca7fca1217c3c",
+      "size": 2582587
+    },
+    {
+      "name": "javafx-base-21.0.13.1-linux.jar",
+      "url": "https://repo.maven.apache.org/maven2/org/openjfx/javafx-base/21.0.13.1/javafx-base-21.0.13.1-linux.jar",
+      "target": "lib/linux/javafx-base.jar",
+      "maven": "org.openjfx:javafx-base",
+      "version": "21.0.13.1",
+      "sha256": "e7f4925b7e3fff970e343b4fe866939f443b75f27b701965d7796b1e7f47007b",
+      "size": 753232
+    },
+    {
+      "name": "javafx-graphics-21.0.13.1-linux.jar",
+      "url": "https://repo.maven.apache.org/maven2/org/openjfx/javafx-graphics/21.0.13.1/javafx-graphics-21.0.13.1-linux.jar",
+      "target": "lib/linux/javafx-graphics.jar",
+      "maven": "org.openjfx:javafx-graphics",
+      "version": "21.0.13.1",
+      "sha256": "85fd7bf5668d57ad2f33a45e10e964c5eb345071d40179c9d30f88e5b82848f4",
+      "size": 4684495
+    },
+    {
+      "name": "javafx-controls-21.0.13.1-linux.jar",
+      "url": "https://repo.maven.apache.org/maven2/org/openjfx/javafx-controls/21.0.13.1/javafx-controls-21.0.13.1-linux.jar",
+      "target": "lib/linux/javafx-controls.jar",
+      "maven": "org.openjfx:javafx-controls",
+      "version": "21.0.13.1",
+      "sha256": "d206fcc8844e9bf243b1a33af244648b8d998eaad37c0dfefc3ca84289c36b0d",
+      "size": 2582587
+    },
+    {
+      "name": "gson-2.15.0.jar",
+      "url": "https://repo.maven.apache.org/maven2/com/google/code/gson/gson/2.15.0/gson-2.15.0.jar",
+      "target": "lib/gson.jar",
+      "maven": "com.google.code.gson:gson",
+      "version": "2.15.0",
+      "sha256": "96d3dd843dc2911de01cdabcd50064cb9e860353102a0a78c96fd833d396fc7d",
+      "size": 316396
+    },
+    {
+      "name": "gson-2.15.0-sources.jar",
+      "url": "https://repo.maven.apache.org/maven2/com/google/code/gson/gson/2.15.0/gson-2.15.0-sources.jar",
+      "source": true,
+      "sha256": "e689856e33f12904741d481825ee582fa160f751c741836601bc16666dbc7249",
+      "size": 216991
+    },
+    {
+      "name": "openjfx-21.0.13.1-source.zip",
+      "url": "https://codeload.github.com/openjdk/jfx21u/zip/5497f2f46abff58bea405b310fb6c9670686709e",
+      "source": true,
+      "revision": "5497f2f46abff58bea405b310fb6c9670686709e",
+      "sha256": "2f208ece482a355cc52d55a7a0627de82d3fbf2501894de0095590c08406f604",
+      "size": 99746804
+    }
+  ]
+}
