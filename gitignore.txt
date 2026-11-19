@@ -1,0 +1,38 @@
+# Build output and dependencies
+/build/
+/dist/
+/release/
+/.cache/
+*.class
+*.jar
+*.zip
+*.part
+# User/game data (never publish)
+instances/
+.minecraft/
+saves/
+logs/
+crash-reports/
+.hfml-locks/
+.mods.lock
+launcher_accounts.json
+launcher_profiles.json
+accounts.json
+usercache.json
+servers.dat
+options.txt
+*.log
+.env
+.env.*
+*.pem
+*.key
+*.p12
+*.pfx
+# Local tooling
+.DS_Store
+__pycache__/
+*.pyc
+.venv/
+.idea/
+.vscode/
+/art/output/
