@@ -43,12 +43,62 @@ jobs:
           GH_TOKEN: ${{ github.token }}
           GH_REPO: ${{ github.repository }}
         run: |
-          release_tag="$(python3 -c 'import sys; sys.path.insert(0, "tools"); from build import VERSION; print("v" + VERSION)')"
-          existing="$(gh api "repos/$GH_REPO/git/ref/tags/$release_tag" --jq .object.sha 2>/dev/null || true)"
-          if [ -n "$existing" ] && [ "$existing" != "$GITHUB_SHA" ]; then
-            echo "This version tag already points to another commit. Update Launcher.VERSION before releasing."
-            exit 1
-          fi
-          gh release create "$release_tag" \
-            release/HFML-release.zip release/HFML-source.zip release/HFML.jar release/SHA256SUMS.txt \
-            --target "$GITHUB_SHA" --draft --generate-notes
+          python3 - <<'PY'
+          import json
+          import os
+          import re
+          import subprocess
+          import sys
+          import urllib.error
+          import urllib.request
+          
+          
+          def get_json(route, token, missing_ok=False):
+              request = urllib.request.Request(
+                  'https://api.github.com/' + route,
+                  headers={'Authorization': 'Bearer ' + token,
+                           'Accept': 'application/vnd.github+json',
+                           'X-GitHub-Api-Version': '2022-11-28',
+                           'User-Agent': 'Hoshino-Fuji-Launcher-release'})
+              try:
+                  with urllib.request.urlopen(request, timeout=30) as response:
+                      return json.load(response)
+              except urllib.error.HTTPError as error:
+                  if missing_ok and error.code == 404:
+                      return None
+                  raise RuntimeError('GitHub tag query failed: HTTP ' + str(error.code)) from None
+          
+          
+          def check_tag(fetch, tag, commit):
+              data = fetch('git/ref/tags/' + tag, True)
+              if data is None:
+                  return
+              obj = data['object']
+              for _ in range(8):
+                  if not re.fullmatch('[0-9a-f]{40}', obj['sha']):
+                      raise RuntimeError('Invalid tag object SHA')
+                  if obj['type'] == 'commit':
+                      if obj['sha'] != commit:
+                          raise RuntimeError('Existing version tag points to another commit; review it before releasing')
+                      return
+                  if obj['type'] != 'tag':
+                      raise RuntimeError('Unexpected tag object type')
+                  obj = fetch('git/tags/' + obj['sha'], False)['object']
+              raise RuntimeError('Too many nested annotated tags')
+          
+          
+          def main():
+              sys.path.insert(0, 'tools')
+              from build import VERSION
+              tag = 'v' + VERSION
+              repo, token, commit = os.environ['GH_REPO'], os.environ['GH_TOKEN'], os.environ['GITHUB_SHA']
+              check_tag(lambda route, missing: get_json('repos/' + repo + '/' + route, token, missing), tag, commit)
+              subprocess.run(['gh', 'release', 'create', tag,
+                              'release/HFML-release.zip', 'release/HFML-source.zip',
+                              'release/HFML.jar', 'release/SHA256SUMS.txt',
+                              '--target', commit, '--draft', '--generate-notes'], check=True)
+          
+          
+          if __name__ == '__main__':
+              main()
+          PY
