@@ -1,0 +1,54 @@
+name: Prepare release draft
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: hfml-release-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  release:
+    if: github.ref == 'refs/heads/main' && github.event.repository.fork == false
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    environment: release
+    permissions:
+      contents: write
+      id-token: write
+      attestations: write
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-java@cf277c60eb25467037889841efdb72551f06f6c3 # v4
+        with:
+          distribution: temurin
+          java-version: '21'
+      - name: Check published dependency advisories
+        run: python3 tools/check_vulnerabilities.py
+      - name: Build with full corresponding sources and security tests
+        run: python3 tools/build.py --test --release
+      - name: Verify every file
+        run: python3 tools/verify_checksums.py dist
+      - name: Package distribution
+        run: python3 tools/package_release.py
+      - uses: actions/attest-build-provenance@e8998f949152b193b063cb0ec769d69d929409be # v2
+        with:
+          subject-path: |
+            release/HFML-release.zip
+            release/HFML-source.zip
+            release/HFML.jar
+      - name: Create draft release from this reviewed commit
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          release_tag="$(python3 -c 'import sys; sys.path.insert(0, "tools"); from build import VERSION; print("v" + VERSION)')"
+          existing="$(gh api "repos/$GH_REPO/git/ref/tags/$release_tag" --jq .object.sha 2>/dev/null || true)"
+          if [ -n "$existing" ] && [ "$existing" != "$GITHUB_SHA" ]; then
+            echo "This version tag already points to another commit. Update Launcher.VERSION before releasing."
+            exit 1
+          fi
+          gh release create "$release_tag" \
+            release/HFML-release.zip release/HFML-source.zip release/HFML.jar release/SHA256SUMS.txt \
+            --target "$GITHUB_SHA" --draft --generate-notes
